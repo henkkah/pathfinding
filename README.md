@@ -10,8 +10,11 @@ Algorithms used are:
 Also, speed limits of different highways are taken into account in calculating the quickest paths.
 Purpose is to find the quickest path(s) (not necessarily shortest) when driving with car.
   
-Application is used from command line – when a shortest path is queried, then a popup window visualizing resulting shortest path(s) is opened, including comparison of performance between the algorithms used.  
-Programming language of the project is Python.  
-This project is part of University of Helsinki's course 'Aineopintojen harjoitustyö: Tietorakenteet ja algoritmit' in August 2021.  
+Application is used from command line – when a shortest path is queried, then a popup window visualizing resulting shortest path(s) is opened, including comparison of performance between the algorithms used.
+  
+Programming language of the project is Python.
+  
+This project is part of University of Helsinki's course 'Aineopintojen harjoitustyö: Tietorakenteet ja algoritmit' in August 2021.
 
 ## Weekly Reports
+[Weekly Report 1](https://github.com/henkkah/pathfinding/blob/master/Documentation/Weekly%20Reports/Weekly%20Report%201.pdf)  
