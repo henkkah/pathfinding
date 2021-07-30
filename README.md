@@ -17,3 +17,4 @@ This project is part of University of Helsinki's course 'Aineopintojen harjoitus
 
 ## Weekly Reports
 [Weekly Report 1](https://github.com/henkkah/pathfinding/blob/master/Documentation/Weekly%20Reports/Weekly%20Report%201.md)  
+[Weekly Report 2](https://github.com/henkkah/pathfinding/blob/master/Documentation/Weekly%20Reports/Weekly%20Report%202.md)  
