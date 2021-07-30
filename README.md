@@ -1,10 +1,9 @@
 # PathFinding App
 
 Topic of this project is to make a pathfinding application.
-Different pathfinding algorithms are used to compare their effectiveness (in terms of runtime) in finding the quickest path from one Finnish city to another Finnish city using Finnish highways (valtatie in Finnish).
+Two pathfinding algorithms are used to compare their effectiveness (in terms of runtime) in finding the quickest path from one Finnish city to another Finnish city using Finnish highways (valtatie in Finnish).
 Algorithms used are:
 - Dijkstra's algorithm
-- JPS (Jump Point Search) algorithm
 - IDA* (Iterative Deepening A*) algorithm
   
 Also, speed limits of different highways are taken into account in calculating the quickest paths.
@@ -17,4 +16,4 @@ Programming language of the project is Python.
 This project is part of University of Helsinki's course 'Aineopintojen harjoitustyö: Tietorakenteet ja algoritmit' in August 2021.
 
 ## Weekly Reports
-[Weekly Report 1](https://github.com/henkkah/pathfinding/blob/master/Documentation/Weekly%20Reports/Weekly%20Report%201.pdf)  
+[Weekly Report 1](https://github.com/henkkah/pathfinding/blob/master/Documentation/Weekly%20Reports/Weekly%20Report%201.md)  
