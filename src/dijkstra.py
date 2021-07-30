@@ -1,8 +1,8 @@
-from heapq import heappush, heappop
-# heappush(heap,x)
-# heappop(heap)
-
 def dijkstra(start, end, adjlist):
+    from heapq import heappush, heappop
+    # heappush(heap,x)
+    # heappop(heap)
+    
     inf = 10**9     # infinity
     
     # data structures
@@ -42,7 +42,7 @@ def dijkstra(start, end, adjlist):
     return (distances, processed, heap, distance, path)
 
 
-
+"""
 ##### Testing the algorithm #####
 adjlist = {}
 adjlist['A'] = [('B',9), ('F',2)]
@@ -60,5 +60,5 @@ print()
 print("distance:", distance)
 print("path:", path)
 #################################
-
+"""
 
