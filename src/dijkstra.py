@@ -1,4 +1,16 @@
 def dijkstra(start, end, adjlist):
+    """Finds shortest path from start vertex to end vertex using adjacency list given and Dijkstra's shortest path algorithm.
+    
+    Args:
+        start: start vertex from where path starts
+        end: end vertex to which path ends
+        adjlist: adjacency list (dictionary technically) of all edges from the graph of the form:
+            startvertex -> [(endvertex1,weight1), (endvertex2,weight2), etc...]
+    
+    Returns:
+        tuple of (distances, processed, heap, distance, path) in this developing phase - later return value will be modified
+    """
+    
     from heapq import heappush, heappop
     # heappush(heap,x)
     # heappop(heap)

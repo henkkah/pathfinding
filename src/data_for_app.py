@@ -1,4 +1,13 @@
 def data_for_app():
+    """Reads base data for the app (city and highway data) and stores it in appropriate format for the app.
+    
+    Args:
+        no arguments - reads data from csv files which need to be in data folder in order for the application to work
+    
+    Returns:
+        tuple of (cities, coordinates, speedlimits, adjlist) in this developing phase - later return value will be modified
+    """
+    
     import csv
 
     # data structures
