@@ -14,7 +14,7 @@ def data_for_app():
     cities = []
     coordinates = {}
     speedlimits = {}
-    adjlist = {}
+    adjlist = {}            # adjacency list
 
     # read city data
     with open('data/cities.csv', 'r') as f:
