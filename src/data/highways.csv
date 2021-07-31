@@ -14,12 +14,12 @@
 2,Pori,Mantyluoto,23,Highway
 3,Helsinki,Hyvinkaa,54,Motorway
 3,Hyvinkaa,Hameenlinna,46,Motorway
-3,Hameenlinna,Toijala,42,Motorway
-3,Toijala,Tampere,37,Motorway
+3,Hameenlinna,Toijala,49,Motorway
+3,Toijala,Tampere,30,Motorway
 3,Tampere,Parkano,92,Highway
 3,Parkano,Jalasjarvi,60,Highway
-3,Jalasjarvi,Laihia,72,Highway
-3,Laihia,Vaasa,21,Highway
+3,Jalasjarvi,Laihia,69,Highway
+3,Laihia,Vaasa,24,Highway
 4,Helsinki,Mantsala,59,Motorway
 4,Mantsala,Lahti,49,Motorway
 4,Lahti,Heinola,42,Motorway
@@ -69,8 +69,8 @@
 8,Kalvia,Kalajoki,54,Highway
 8,Kalajoki,Liminka,107,Highway
 9,Turku,Humppila,84,Highway
-9,Humppila,Toijala,42,Highway
-9,Toijala,Tampere,34,Highway
+9,Humppila,Toijala,46,Highway
+9,Toijala,Tampere,30,Highway
 9,Tampere,Jamsa,92,Highway
 9,Jamsa,Jyvaskyla,58,Highway
 9,Jyvaskyla,Hankasalmi,50,Highway
