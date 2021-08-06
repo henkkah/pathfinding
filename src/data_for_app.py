@@ -58,16 +58,3 @@ def data_for_app():
     return (cities, coordinates, speedlimits, adjlist)
 
 
-"""
-##### Test how above works #####
-cities, coordinates, speedlimits, adjlist = data_for_app()
-print("coordinates:", coordinates)
-print()
-print("speed limits:", speedlimits)
-print()
-cities = adjlist.keys()
-for city in cities:
-    print(city + ": " + str(adjlist[city]))
-################################
-"""
-
