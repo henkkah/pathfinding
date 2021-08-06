@@ -15,6 +15,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
     
     from dijkstra import dijkstra
     from random import randint
+    import matplotlib.pyplot as plt
     
     def get_commands():
         return "Commands:\n    1 [Find shortest path between given cities]\n    2 [Find shortest path between random cities]\n    3 [See list of cities]\n    4 [Close application]\n"
@@ -24,6 +25,47 @@ def ui(cities, coordinates, speedlimits, adjlist):
         minutes = int(round(distance % 1 * 60, 0))
         citypath = " - ".join(path)
         return "\n----- Shortest path -----\nStart:    " + start + "\nEnd:      " + end + "\nDuration: " + str(hours) + " hours " + str(minutes) + " minutes\nPath:     " + citypath + "\n"
+    
+    def visualize_path(start, end, distance, path):
+        min_x, max_x, min_y, max_y = 100, 0, 100, 0
+
+        # neighboring cities not in path
+        neighbors = []
+        neighbors_from = []
+        for city in path:
+            for neighbor_tuple in adjlist[city]:
+                neighbor = neighbor_tuple[0]
+                if neighbor not in path:
+                    neighbors.append(neighbor)
+                    neighbors_from.append(city)
+        # visualization
+        xs, ys = [], []
+        for i in range(len(neighbors)):
+            city = neighbors[i]
+            x, y = coordinates[city][0], coordinates[city][1]
+            xs.append(x)
+            ys.append(y)
+            plt.annotate(city, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
+            min_x, max_x, min_y, max_y = min(min_x, x), max(max_x, x), min(min_y, y), max(max_y, y)
+            # original city in path from where neighbor stems from - road with dashed line
+            city2 = neighbors_from[i]
+            x2, y2 = coordinates[city2][0], coordinates[city2][1]
+            plt.plot([x, x2], [y, y2], linestyle="dashed", color="cyan")
+        plt.scatter(xs, ys, s=5, color="cyan")
+        
+        # visited cities and visualization
+        xs, ys = [], []
+        for city in path:
+            x, y = coordinates[city][0], coordinates[city][1]
+            xs.append(x)
+            ys.append(y)
+            plt.annotate(city, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
+            min_x, max_x, min_y, max_y = min(min_x, x), max(max_x, x), min(min_y, y), max(max_y, y)
+        plt.scatter(xs, ys, s=50, color="blue")
+        plt.plot(xs, ys, color="blue")
+        
+        plt.title("Shortest path: " + start + " -> " + end)
+        plt.show()
     
     print("---------- PATHFINDING APP ----------\n")
     
@@ -49,6 +91,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
             distance, path = dijkstra(start, end, adjlist)
             
             print(shortest_path_output(start, end, distance, path))
+            visualize_path(start, end, distance, path)
         
         elif command == "2":
             # random start and end cities
@@ -61,6 +104,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
             distance, path = dijkstra(start, end, adjlist)
             
             print(shortest_path_output(start, end, distance, path))
+            visualize_path(start, end, distance, path)
         
         elif command == "3":
             print("\n- Cities -\n" + ", ".join(cities) + "\n")
