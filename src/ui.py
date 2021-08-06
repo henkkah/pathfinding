@@ -17,7 +17,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
     from random import randint
     
     def get_commands():
-        return "Commands:\n    1 [Find shortest path between given cities]\n    2 [Find shortest path between random cities]\n    3 [Close application]\n"
+        return "Commands:\n    1 [Find shortest path between given cities]\n    2 [Find shortest path between random cities]\n    3 [See list of cities]\n    4 [Close application]\n"
     
     def shortest_path_output(start, end, distance, path):
         hours = int(distance // 1)
@@ -63,6 +63,9 @@ def ui(cities, coordinates, speedlimits, adjlist):
             print(shortest_path_output(start, end, distance, path))
         
         elif command == "3":
+            print("\n- Cities -\n" + ", ".join(cities) + "\n")
+        
+        elif command == "4":
             exit()
         
         else:
