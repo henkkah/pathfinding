@@ -1,5 +1,6 @@
 import unittest
 from dijkstra import dijkstra
+from data_for_app import data_for_app
 
 
 class TestPathFindingApp(unittest.TestCase):
@@ -39,7 +40,7 @@ class TestPathFindingApp(unittest.TestCase):
     def test_dijkstra_algorithm_on_graph_1_to_F_distance(self):
         adjlist = self.create_example_graph_1()
         distanceF, pathF = dijkstra('A', 'F', adjlist)
-        self.assertEqual(distanceE, 2)
+        self.assertEqual(distanceF, 2)
 
     def test_dijkstra_algorithm_on_graph_1_to_B_path(self):
         adjlist = self.create_example_graph_1()
@@ -49,21 +50,21 @@ class TestPathFindingApp(unittest.TestCase):
     def test_dijkstra_algorithm_on_graph_1_to_C_path(self):
         adjlist = self.create_example_graph_1()
         distanceC, pathC = dijkstra('A', 'C', adjlist)
-        self.assertEqual(pathB, ['A', 'F', 'E', 'D', 'C'])
+        self.assertEqual(pathC, ['A', 'F', 'E', 'D', 'C'])
 
     def test_dijkstra_algorithm_on_graph_1_to_D_path(self):
         adjlist = self.create_example_graph_1()
         distanceD, pathD = dijkstra('A', 'D', adjlist)
-        self.assertEqual(pathB, ['A', 'F', 'E', 'D'])
+        self.assertEqual(pathD, ['A', 'F', 'E', 'D'])
 
     def test_dijkstra_algorithm_on_graph_1_to_E_path(self):
         adjlist = self.create_example_graph_1()
         distanceE, pathE = dijkstra('A', 'E', adjlist)
-        self.assertEqual(pathB, ['A', 'F', 'E'])
+        self.assertEqual(pathE, ['A', 'F', 'E'])
 
     def test_dijkstra_algorithm_on_graph_1_to_F_path(self):
         adjlist = self.create_example_graph_1()
         distanceF, pathF = dijkstra('A', 'F', adjlist)
-        self.assertEqual(pathB, ['A', 'F'])
+        self.assertEqual(pathF, ['A', 'F'])
 
 

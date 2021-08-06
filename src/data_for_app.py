@@ -17,7 +17,7 @@ def data_for_app():
     adjlist = {}            # adjacency list
 
     # read city data
-    with open('data/cities.csv', 'r') as f:
+    with open('src/data/cities.csv', 'r') as f:
         r = csv.reader(f)
         rows = [row for row in r]
         headers = rows[0]
@@ -30,7 +30,7 @@ def data_for_app():
         adjlist[row[0]] = []
 
     # read speed limit data
-    with open('data/speedlimits.csv', 'r') as f:
+    with open('src/data/speedlimits.csv', 'r') as f:
         r = csv.reader(f)
         rows = [row for row in r]
         headers = rows[0]
@@ -41,7 +41,7 @@ def data_for_app():
         speedlimits[row[0]] = row[1]
 
     # read highway data
-    with open('data/highways.csv', 'r') as f:
+    with open('src/data/highways.csv', 'r') as f:
         r = csv.reader(f)
         rows = [row for row in r]
         headers = rows[0]
