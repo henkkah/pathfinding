@@ -11,25 +11,25 @@ def dijkstra(start, end, adjlist):
         tuple of (distance, path), where distance is the min distance between start and end cities and path is the min path forming this min distance
     """
     
-    from heapq import heappush, heappop
+    from min_heap import MinHeap
     
-    inf = 10**9     # infinity
+    inf = 10**9         # infinity
     
     # data structures
-    distances = {}  # distances dictionary contains tuples of (distance, via), where 'distance' tells the min distance and 'via' tells via which vertex that min distance is achieved
-    processed = {}  # processed dictionary contains info whether each vertex has been processed or not
-    heap = []       # min heap contains tuples of (distance, vertex)
+    distances = {}      # distances dictionary contains tuples of (distance, via), where 'distance' tells the min distance and 'via' tells via which vertex that min distance is achieved
+    processed = {}      # processed dictionary contains info whether each vertex has been processed or not
+    heap = MinHeap()    # min heap contains tuples of (distance, vertex)
     
     for vertex in adjlist.keys():
         distances[vertex] = (inf, None)
         processed[vertex] = False
     
     distances[start] = (0, start)
-    heappush(heap, (0, start))
+    heap.insert( (0, start) )
     
     # loop ended directly after reaching end city
-    while not processed[end] and len(heap) > 0:
-        next = heappop(heap)
+    while not processed[end] and not heap.is_empty():
+        next = heap.pop_min()
         startvertex = next[1]
         if not processed[startvertex]:
             processed[startvertex] = True
@@ -38,7 +38,7 @@ def dijkstra(start, end, adjlist):
                 weight = edge[1]
                 if distances[startvertex][0] + weight < distances[endvertex][0]:
                     distances[endvertex] = (distances[startvertex][0] + weight, startvertex)
-                    heappush(heap, (distances[endvertex][0], endvertex))
+                    heap.insert( (distances[endvertex][0], endvertex) )
     
     # get path forming min distance
     distance = distances[end][0]
