@@ -20,10 +20,10 @@ def dijkstra(start, end, adjlist):
     processed = {}      # processed dictionary contains info whether each vertex has been processed or not
     heap = MinHeap()    # min heap contains tuples of (distance, vertex)
     
+    # initialize starting situation
     for vertex in adjlist.keys():
         distances[vertex] = (inf, None)
         processed[vertex] = False
-    
     distances[start] = (0, start)
     heap.insert( (0, start) )
     

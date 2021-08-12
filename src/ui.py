@@ -18,15 +18,45 @@ def ui(cities, coordinates, speedlimits, adjlist):
     import matplotlib.pyplot as plt
     
     def get_commands():
+        """Helper method - Gets available commands available for user in UI.
+        
+        Args:
+            no arguments
+        
+        Returns:
+            Available commands as string
+        """
         return "Commands:\n    1 [Find shortest path between given cities]\n    2 [Find shortest path between random cities]\n    3 [See list of cities]\n    4 [Close application]\n"
     
     def shortest_path_output(start, end, distance, path):
+        """Helper method - Formats resulting shortest path.
+        
+        Args:
+            start: starting city from where path starts
+            end: ending city to which path ends
+            distance: shortest distance between start and end cities (calculated in other methods)
+            path: shortest path between start and end cities (calculated in other methods)
+        
+        Returns:
+            Description of shortest path as string
+        """
         hours = int(distance // 1)
         minutes = int(round(distance % 1 * 60, 0))
         citypath = " - ".join(path)
         return "\n----- Shortest path -----\nStart:    " + start + "\nEnd:      " + end + "\nDuration: " + str(hours) + " hours " + str(minutes) + " minutes\nPath:     " + citypath + "\n"
     
     def visualize_path(start, end, distance, path):
+        """Helper method - Visualizes found shortest path to a separate window.
+        
+        Args:
+            start: starting city from where path starts
+            end: ending city to which path ends
+            distance: shortest distance between start and end cities (calculated in other methods)
+            path: shortest path between start and end cities (calculated in other methods)
+        
+        Returns:
+            no return value - returned from the method when user closes window
+        """
         min_x, max_x, min_y, max_y = 100, 0, 100, 0
 
         # neighboring cities not in path
@@ -67,8 +97,11 @@ def ui(cities, coordinates, speedlimits, adjlist):
         plt.title("Shortest path: " + start + " -> " + end)
         plt.show()
     
+    
+    
     print("---------- PATHFINDING APP ----------\n")
     
+    # Endless loop to ask user for commands - takes also action based on given command
     while True:
         print(get_commands())
         command = input("Command: ")
