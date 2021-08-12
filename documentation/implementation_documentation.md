@@ -33,19 +33,19 @@ In this particular pathdfinding application Finnish map forms a graph where citi
 #### Reasoning for Time complexity
 Pseudocode for Dijkstra's algorithm together with comments about time complexity:
   
-(1) for each V:						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(V) as initialization done for each vertex once  
-(2) &nbsp;&nbsp;&nbsp;&nbsp;    distance[V] = infinity  
-(3) &nbsp;&nbsp;&nbsp;&nbsp;    processed[V] = False  
-(4) while not processed[ending_city]:			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(V) as each vertex (city) is processed zero or one times  
-(5) &nbsp;&nbsp;&nbsp;&nbsp;    next_city = heap.pop()				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(1) - constant time operation from heap  
-(6) &nbsp;&nbsp;&nbsp;&nbsp;    if not processed[next_city]:			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(1) - truth comparison for value from dictionary  
-(7) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        processed[next_city] = True			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(1) - set value to dictionary  
-(8) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        for edge_and_neighbor in adjacency_list[next_city]:	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O(E) as all edges can start from current vertex  
-(9) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    E = edge_and_neighbor[0]			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(1)  
-(10)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    neighbor = edge_and_neighbor[1]		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(1)  
-(11)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    if distance[next_city] + E < distance[neighbor]:	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O(1) - truth comparison for two values from dictionaries  
-(12)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		distance[neighbor] = distance[next_city] + E	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; O(1) - set value to dictionary  
-(13)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		heap.push(neighbor)			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	O(log V) is the time complexity for inserting new item into min heap and heapifying to preserve min heap property  
+*01* for each V: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(V) as initialization done for each vertex once*  
+*02* &nbsp;&nbsp;&nbsp;&nbsp;distance[V] = infinity  
+*03* &nbsp;&nbsp;&nbsp;&nbsp;processed[V] = False  
+*04* while not processed[ending_city]: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(V) as each vertex (city) is processed zero or one times*  
+*05* &nbsp;&nbsp;&nbsp;&nbsp;next_city = heap.pop() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1) - constant time operation from heap*  
+*06* &nbsp;&nbsp;&nbsp;&nbsp;if not processed[next_city]: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1) - truth comparison for value from dictionary*  
+*07* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processed[next_city] = True &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1) - set value to dictionary*  
+*08* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for edge_and_neighbor in adjacency_list[next_city]: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(E) as all edges can start from current vertex*  
+*09* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E = edge_and_neighbor[0] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*10* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;neighbor = edge_and_neighbor[1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*11* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if distance[next_city] + E < distance[neighbor]: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1) - truth comparison for two values from dictionaries*  
+*12* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;distance[neighbor] = distance[next_city] + E &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1) - set value to dictionary*  
+*13* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heap.push(neighbor) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(log V) is the time complexity for inserting new item into min heap and heapifying to preserve min heap property*  
   
 Each vertex and each edge is processed at maximum once in rows 4 and 8, which is O(V + E).  
 Then, for each edge, pushing to heap is done in O(log V) time in row 13, which results in total time complexity of O(V + E log V) for the algorithm.  
