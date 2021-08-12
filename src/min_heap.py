@@ -88,22 +88,3 @@ class MinHeap:
             return result
 
 
-
-# Test
-from random import randint
-array = [2, 7, 3, 7, 9, 15, 8, 12, 8, 13]
-heap = MinHeap()
-for _ in range(10):
-    one = array[randint(0, len(array)-1)]
-    array.remove(one)
-    heap.insert(one)
-    print("Heap:", heap.get_heap()[0])
-    print("Last:", heap.get_heap()[1])
-    print("Min:", heap.get_min())
-    print()
-print("--------------------------------------------------")
-for _ in range(10):
-    print("Popped:", heap.pop_min())
-    print("Heap:", heap.get_heap()[0])
-    print("Last:", heap.get_heap()[1])
-    print()
