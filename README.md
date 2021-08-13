@@ -16,7 +16,7 @@ Programming language of the project is Python.
 This project is part of University of Helsinki's course 'Aineopintojen harjoitustyö: Tietorakenteet ja algoritmit' in August 2021.
 
 ## Usage Instruction
-Application is started by running 'src/pathfinding.py' from the root folder of the project.  
+Application is started by running *src/pathfinding.py* from the root folder of the project.  
 Application is used from command line.  
 
 ## Weekly Reports
