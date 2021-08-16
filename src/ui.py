@@ -14,6 +14,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
     """
     
     from dijkstra import dijkstra
+    from idastar import idastar
     from random import randint
     import matplotlib.pyplot as plt
     
@@ -120,8 +121,17 @@ def ui(cities, coordinates, speedlimits, adjlist):
                 if end not in cities:
                     print("City not available")
             
+            algo = input("\nAlgorithm (d/i): ")
+            
+            print("\nCalculating shortest path: " + start + "-" + end + "...")
+            
             # get shortest path
-            distance, path = dijkstra(start, end, adjlist)
+            if algo == "d":
+                distance, path = dijkstra(start, end, adjlist)
+            elif algo == "i":
+                distance, path = idastar(start, end, adjlist, coordinates)
+            else:
+                continue
             
             print(shortest_path_output(start, end, distance, path))
             visualize_path(start, end, distance, path)
@@ -133,8 +143,17 @@ def ui(cities, coordinates, speedlimits, adjlist):
             while start == end:
                 end = cities[randint(0, len(cities)-1)]
             
+            algo = input("\nAlgorithm (d/i): ")
+            
+            print("\nCalculating shortest path: " + start + "-" + end + "...")
+            
             # get shortest path
-            distance, path = dijkstra(start, end, adjlist)
+            if algo == "d":
+                distance, path = dijkstra(start, end, adjlist)
+            elif algo == "i":
+                distance, path = idastar(start, end, adjlist, coordinates)
+            else:
+                continue
             
             print(shortest_path_output(start, end, distance, path))
             visualize_path(start, end, distance, path)
