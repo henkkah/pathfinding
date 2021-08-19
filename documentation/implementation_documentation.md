@@ -18,10 +18,14 @@ Application consists of several modules described below.
     - runs text-based user interface for the user
 - *dijkstra.py* module
     - implementation of Dijkstra's shortest path finding algorithm
+- *idastar.py* module
+    - implementation of IDA* shortest path finding algorithm
 - *min_heap.py* module
     - implementation of Min Heap (used in Dijkstra's algorithm)
 - *application_test.py* module
     - for automatic testing of the application
+- *performance_test.py* module
+    - for performance testing between algorithms
 
 ## Achieved time and space complexities
 In this particular pathdfinding application Finnish map forms a graph where cities are vertices (V below) and highways are edges (E below).
@@ -59,7 +63,42 @@ Data structures:
 E <= V^2, so resulting space complexity of algorithm is O(E).
 
 ### IDA* Algorithm
-TBD
+- Time complexity: O(b^d), where b is branching factor and d is depth of first solution
+- Space complexity: O(d)
+
+#### Reasoning for Time complexity
+Pseudocode for IDA* algorithm together with comments about time complexity:
+  
+*01* helper_function(current_vertex, cost_to_vertex, threshold):  
+*02* &nbsp;&nbsp;&nbsp;&nbsp;if current_vertex==end_vertex: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*03* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "FOUND!" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*04* &nbsp;&nbsp;&nbsp;&nbsp;f_score = cost_to_vertex + heuristics[current_vertex] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*05* &nbsp;&nbsp;&nbsp;&nbsp;if f_score > threshold: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*06* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return f_score &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*07* &nbsp;&nbsp;&nbsp;&nbsp;min_f_score = MAX_INT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*08* &nbsp;&nbsp;&nbsp;&nbsp;for neighbor_and_cost in adjacency_list[current_vertex]: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(b) as number of neighbors = number of branches*  
+*09* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;neighbor, weight = neighbor_and_cost[0], neighbor_and_cost[1] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*10* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return_value = helper_function(neighbor, cost_to_vertex+weight, threshold)  
+*11* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if return_value == "FOUND!": &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*12* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "FOUND!" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*13* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if return_value < min_f_score &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*14* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_f_score = return_value &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*15* &nbsp;&nbsp;&nbsp;&nbsp;return min_f_score &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*16*  
+*17* while True: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(d), so while loop is looped the less times to more depth there is in first solution (the larger the threshold initially)*  
+*18* &nbsp;&nbsp;&nbsp;&nbsp;return_value = helper_function(start_vertex, 0, initial_threshold)  
+*19* &nbsp;&nbsp;&nbsp;&nbsp;if return_value == "FOUND!": &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*20* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "FOUND!" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+*21* &nbsp;&nbsp;&nbsp;&nbsp;threshold = return_value &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *O(1)*  
+  
+From rows 8 and 17 it can be inferred that time complexity of IDA* is O(b^d).  
+Intuitively, the more depth there is in first solution (the larger the threshold initially), the less solutions are found and the faster the running time is.  
+Similarly, the less branching there is from vertices, the less solutions are found and the faster the running time.  
+
+#### Reasoning for Space complexity
+IDA* is a space-optimized algorithm, so it does not store any information (except current threshold) between iterations.  
+It starts to search for the solution from the start vertex at each iteration, only threshold value is increased between iterations.  
+IDA* stores information only of current iteration, so amount of space depends on depth of the iteration, thus space complexity of O(d).  
 
 ## Performance comparison and O-analysis comparison
 TBD
@@ -71,6 +110,9 @@ TBD
 ### Sources for algorithms, data structures and application implementation:
 - Lecture slides by Jyrki Kivinen for courses 'Tietorakenteet ja algoritmit I-II' (University of Helsinki's courses)
 - https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+- https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+- https://en.wikipedia.org/wiki/Iterative_deepening_A*
+- https://algorithmsinsight.wordpress.com/graph-theory-2/ida-star-algorithm-in-general/
 - https://matplotlib.org/stable/tutorials/index.html
 ### Sources for geographic data:
 - https://fi.wikipedia.org/wiki/Valtatiet_Suomessa
