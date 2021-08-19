@@ -21,46 +21,26 @@ class TestPathFindingApp(unittest.TestCase):
         self.adjlist1['F'] = [('B',5), ('E',1)]
     
     
-    # Test Dijkstra's Algoritm
-    def test_dijkstra_algorithm_on_graph_1_to_B_distance(self):
-        distanceB, pathB = dijkstra('A', 'B', self.adjlist1)
-        self.assertEqual(distanceB, 5)
+    # Test Dijkstra's Algorithm - Distances
+    def test_dijkstra_algorithm_on_graph_1_distances(self):
+        distB, pathB = dijkstra('A', 'B', self.adjlist1)
+        distC, pathC = dijkstra('A', 'C', self.adjlist1)
+        distD, pathD = dijkstra('A', 'D', self.adjlist1)
+        distE, pathE = dijkstra('A', 'E', self.adjlist1)
+        distF, pathF = dijkstra('A', 'F', self.adjlist1)
+        
+        self.assertEqual( (distB,distC,distD,distE,distF) , (5,10,6,3,2) )
     
-    def test_dijkstra_algorithm_on_graph_1_to_C_distance(self):
-        distanceC, pathC = dijkstra('A', 'C', self.adjlist1)
-        self.assertEqual(distanceC, 10)
-
-    def test_dijkstra_algorithm_on_graph_1_to_D_distance(self):
-        distanceD, pathD = dijkstra('A', 'D', self.adjlist1)
-        self.assertEqual(distanceD, 6)
-
-    def test_dijkstra_algorithm_on_graph_1_to_E_distance(self):
-        distanceE, pathE = dijkstra('A', 'E', self.adjlist1)
-        self.assertEqual(distanceE, 3)
-
-    def test_dijkstra_algorithm_on_graph_1_to_F_distance(self):
-        distanceF, pathF = dijkstra('A', 'F', self.adjlist1)
-        self.assertEqual(distanceF, 2)
-
-    def test_dijkstra_algorithm_on_graph_1_to_B_path(self):
-        distanceB, pathB = dijkstra('A', 'B', self.adjlist1)
-        self.assertEqual(pathB, ['A', 'F', 'E', 'B'])
-
-    def test_dijkstra_algorithm_on_graph_1_to_C_path(self):
-        distanceC, pathC = dijkstra('A', 'C', self.adjlist1)
-        self.assertEqual(pathC, ['A', 'F', 'E', 'D', 'C'])
-
-    def test_dijkstra_algorithm_on_graph_1_to_D_path(self):
-        distanceD, pathD = dijkstra('A', 'D', self.adjlist1)
-        self.assertEqual(pathD, ['A', 'F', 'E', 'D'])
-
-    def test_dijkstra_algorithm_on_graph_1_to_E_path(self):
-        distanceE, pathE = dijkstra('A', 'E', self.adjlist1)
-        self.assertEqual(pathE, ['A', 'F', 'E'])
-
-    def test_dijkstra_algorithm_on_graph_1_to_F_path(self):
-        distanceF, pathF = dijkstra('A', 'F', self.adjlist1)
-        self.assertEqual(pathF, ['A', 'F'])
+    
+    # Test Dijkstra's Algorithm - Paths
+    def test_dijkstra_algorithm_on_graph_1_paths(self):
+        distB, pathB = dijkstra('A', 'B', self.adjlist1)
+        distC, pathC = dijkstra('A', 'C', self.adjlist1)
+        distD, pathD = dijkstra('A', 'D', self.adjlist1)
+        distE, pathE = dijkstra('A', 'E', self.adjlist1)
+        distF, pathF = dijkstra('A', 'F', self.adjlist1)
+        
+        self.assertEqual( (pathB,pathC,pathD,pathE,pathF) , (['A','F','E','B'],['A','F','E','D','C'],['A','F','E','D'],['A','F','E'],['A','F']) )
     
     
     # Test Min Heap - Insert
