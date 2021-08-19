@@ -48,15 +48,15 @@ class TestPathFindingApp(unittest.TestCase):
         self.adjlist3['G'] = [('D',6), ('E',4), ('I',2)]
         self.adjlist3['H'] = [('F',sqrt(17)), ('I',sqrt(20))]
         self.adjlist3['I'] = [('G',2), ('H',sqrt(20))]
-        self.coordinates3['A'] = (0/111,0/111)
-        self.coordinates3['B'] = (6/111,1/111)
-        self.coordinates3['C'] = (6/111,0/111)
-        self.coordinates3['D'] = (4/111,3/111)
-        self.coordinates3['E'] = (8/111,9/111)
-        self.coordinates3['F'] = (1/111,1/111)
-        self.coordinates3['G'] = (4/111,9/111)
-        self.coordinates3['H'] = (0/111,5/111)
-        self.coordinates3['I'] = (2/111,9/111)
+        self.coordinates3['A'] = (0/100,0/100)
+        self.coordinates3['B'] = (6/100,1/100)
+        self.coordinates3['C'] = (6/100,0/100)
+        self.coordinates3['D'] = (4/100,3/100)
+        self.coordinates3['E'] = (8/100,9/100)
+        self.coordinates3['F'] = (1/100,1/100)
+        self.coordinates3['G'] = (4/100,9/100)
+        self.coordinates3['H'] = (0/100,5/100)
+        self.coordinates3['I'] = (2/100,9/100)
     
     
     # Test Dijkstra's Algorithm 1 - Distances

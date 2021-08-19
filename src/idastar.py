@@ -40,8 +40,8 @@ def idastar(start, end, adjlist, coordinates):
     cities = adjlist.keys()
     end_e, end_n = coordinates[end][0], coordinates[end][1]
     for city in cities:
-        # 1 degree = 111 kilometers
-        distance = sqrt( ((coordinates[city][0] - end_e)*111)**2 + ((coordinates[city][1] - end_n)*111)**2 )
+        # 1 degree = 111 kilometers - rounding down to 100 because of approximate figures
+        distance = sqrt( ((coordinates[city][0] - end_e)*100)**2 + ((coordinates[city][1] - end_n)*100)**2 )
         duration = distance / 120
         heuristics[city] = duration
     
