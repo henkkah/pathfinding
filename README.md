@@ -24,3 +24,4 @@ Application is used from command line.
 [Weekly Report 2](https://github.com/henkkah/pathfinding/blob/master/documentation/weekly_reports/weekly_report_2.md)  
 [Weekly Report 3](https://github.com/henkkah/pathfinding/blob/master/documentation/weekly_reports/weekly_report_3.md)  
 [Weekly Report 4](https://github.com/henkkah/pathfinding/blob/master/documentation/weekly_reports/weekly_report_4.md)  
+[Weekly Report 5](https://github.com/henkkah/pathfinding/blob/master/documentation/weekly_reports/weekly_report_5.md)  

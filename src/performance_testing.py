@@ -46,7 +46,7 @@ def performance_test_middle():
 
 def performance_test_long():
     start = "Helsinki"
-    end = "Kilpisjärvi"
+    end = "Kilpisjarvi"
     
     # Dijkstra
     dijkstra_start = time()
