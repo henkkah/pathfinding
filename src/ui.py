@@ -66,7 +66,30 @@ def ui(cities, coordinates, speedlimits, adjlist):
         Returns:
             no return value - returned from the method when user closes window which has popped up
         """
-
+        
+        # get all cities to be plotted to figure
+        neighbors = []
+        cities_to_figure = set()
+        for city in path:
+            cities_to_figure.add(city)
+            for neighbor_tuple in adjlist[city]:
+                neighbor = neighbor_tuple[0]
+                if neighbor not in path:
+                    neighbors.append(neighbor)
+                    cities_to_figure.add(neighbor)
+                    for neighbor_of_neighbor_tuple in adjlist[neighbor]:
+                        neighbor_of_neighbor = neighbor_of_neighbor_tuple[0]
+                        cities_to_figure.add(neighbor_of_neighbor)
+        # get min_x, max_x, min_y, max_y
+        min_x, max_x, min_y, max_y = 100, 0, 100, 0
+        for city in list(cities_to_figure):
+            min_x, max_x, min_y, max_y = min(min_x, coordinates[city][0]), max(max_x, coordinates[city][0]), min(min_y, coordinates[city][1]), max(max_y, coordinates[city][1])
+        
+        # set size of window to be popped up to user
+        height = 9.5
+        width = 0.5 * (max_x-min_x) / (max_y-min_y) * height
+        fig = plt.figure(figsize=(width, height))
+        
         # visited cities and visualization
         xs, ys = [], []
         for city in path:
@@ -78,29 +101,25 @@ def ui(cities, coordinates, speedlimits, adjlist):
         plt.plot(xs, ys, color="blue")
         
         # neighboring cities
-        xs, ys = [], []
-        neighbors = []
-        for city in path:
-            for neighbor_tuple in adjlist[city]:
-                neighbor = neighbor_tuple[0]
-                if neighbor not in path:
-                    x, y = coordinates[neighbor][0], coordinates[neighbor][1]
-                    xs.append(x)
-                    ys.append(y)
-                    plt.annotate(neighbor, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
-                    neighbors.append(neighbor)
+        xs2, ys2 = [], []
+        for neighbor in neighbors:
+            if neighbor not in path:
+                x, y = coordinates[neighbor][0], coordinates[neighbor][1]
+                xs2.append(x)
+                ys2.append(y)
+                plt.annotate(neighbor, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
         # neighbors of neighbors and visualization
         for neighbor in neighbors:
             for neighbor_of_neighbor_tuple in adjlist[neighbor]:
                 neighbor_of_neighbor = neighbor_of_neighbor_tuple[0]
                 x, y = coordinates[neighbor_of_neighbor][0], coordinates[neighbor_of_neighbor][1]
                 if neighbor_of_neighbor not in path and neighbor_of_neighbor not in neighbors:
-                    xs.append(x)
-                    ys.append(y)
+                    xs2.append(x)
+                    ys2.append(y)
                     plt.annotate(neighbor_of_neighbor, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
                 x2, y2 = coordinates[neighbor][0], coordinates[neighbor][1]
                 plt.plot([x, x2], [y, y2], color="grey", linestyle="dashed")
-        plt.scatter(xs, ys, s=5, color="grey")
+        plt.scatter(xs2, ys2, s=5, color="grey")
 
         # duration
         hours = int(distance // 1)
