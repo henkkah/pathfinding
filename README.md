@@ -17,6 +17,7 @@ This project is part of University of Helsinki's course 'Aineopintojen harjoitus
 
 ## Usage Instruction
 Application is started by running *src/pathfinding.py* in the root folder of the project.  
+*matplotlib* library needs to be installed in order to run the app.  
 Application is used from command line.  
 
 ## Weekly Reports
