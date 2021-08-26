@@ -66,7 +66,6 @@ def ui(cities, coordinates, speedlimits, adjlist):
         Returns:
             no return value - returned from the method when user closes window which has popped up
         """
-        ##min_x, max_x, min_y, max_y = 100, 0, 100, 0
 
         # visited cities and visualization
         xs, ys = [], []
@@ -75,7 +74,6 @@ def ui(cities, coordinates, speedlimits, adjlist):
             xs.append(x)
             ys.append(y)
             plt.annotate(city, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
-            ##min_x, max_x, min_y, max_y = min(min_x, x), max(max_x, x), min(min_y, y), max(max_y, y)
         plt.scatter(xs, ys, s=50, color="blue")
         plt.plot(xs, ys, color="blue")
         
@@ -113,6 +111,8 @@ def ui(cities, coordinates, speedlimits, adjlist):
             plt.title("Shortest path: " + start + " -> " + end + "\n(" + duration_string + ")")
         else: # ida did not finish
             plt.title("Shortest path: " + start + " -> " + end + "\n(" + duration_string + ")")
+        
+        plt.axis('off')
         plt.show()
     
     
