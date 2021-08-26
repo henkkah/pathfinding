@@ -32,7 +32,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
         return "Commands:\n    1 [Find shortest path between given cities]\n    2 [Find shortest path between random cities]\n    3 [See list of cities]\n    4 [Close application]\n"
     
     
-    def shortest_path_output(start, end, distance, path):
+    def shortest_path_output(start, end, distance, path, time_dij, time_ida, ida_terminated):
         """Helper method - Formats resulting shortest path.
         
         Args:
@@ -47,10 +47,14 @@ def ui(cities, coordinates, speedlimits, adjlist):
         hours = int(distance // 1)
         minutes = int(round(distance % 1 * 60, 0))
         citypath = " - ".join(path)
-        return "\n----- Shortest path -----\nStart:    " + start + "\nEnd:      " + end + "\nDuration: " + str(hours) + " hours " + str(minutes) + " minutes\nPath:     " + citypath + "\n"
+        if ida_terminated:
+            time_usage_string = "-- Time usage --\nDijkstra: " + str(time_dij) + " ms\nIDA*:     " + str(time_ida) + " ms\n"
+        else: # ida did not finish
+            time_usage_string = "-- Time usage --\nDijkstra: " + str(time_dij) + " ms\nIDA*:     did not finish\n"
+        return "\n" + time_usage_string + "\n----- Shortest path -----\nStart:    " + start + "\nEnd:      " + end + "\nDuration: " + str(hours) + " hours " + str(minutes) + " minutes\nPath:     " + citypath + "\n"
     
     
-    def visualize_path(start, end, distance, path):
+    def visualize_path(start, end, distance, path, time_dij, time_ida, ida_terminated):
         """Helper method - Visualizes found shortest path to a separate window.
         
         Args:
@@ -62,32 +66,8 @@ def ui(cities, coordinates, speedlimits, adjlist):
         Returns:
             no return value - returned from the method when user closes window which has popped up
         """
-        min_x, max_x, min_y, max_y = 100, 0, 100, 0
+        ##min_x, max_x, min_y, max_y = 100, 0, 100, 0
 
-        # neighboring cities not in path
-        neighbors = []
-        neighbors_from = []
-        for city in path:
-            for neighbor_tuple in adjlist[city]:
-                neighbor = neighbor_tuple[0]
-                if neighbor not in path:
-                    neighbors.append(neighbor)
-                    neighbors_from.append(city)
-        # visualization
-        xs, ys = [], []
-        for i in range(len(neighbors)):
-            city = neighbors[i]
-            x, y = coordinates[city][0], coordinates[city][1]
-            xs.append(x)
-            ys.append(y)
-            plt.annotate(city, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
-            min_x, max_x, min_y, max_y = min(min_x, x), max(max_x, x), min(min_y, y), max(max_y, y)
-            # original city in path from where neighbor stems from - road with dashed line
-            city2 = neighbors_from[i]
-            x2, y2 = coordinates[city2][0], coordinates[city2][1]
-            plt.plot([x, x2], [y, y2], linestyle="dashed", color="cyan")
-        plt.scatter(xs, ys, s=5, color="cyan")
-        
         # visited cities and visualization
         xs, ys = [], []
         for city in path:
@@ -95,11 +75,44 @@ def ui(cities, coordinates, speedlimits, adjlist):
             xs.append(x)
             ys.append(y)
             plt.annotate(city, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
-            min_x, max_x, min_y, max_y = min(min_x, x), max(max_x, x), min(min_y, y), max(max_y, y)
+            ##min_x, max_x, min_y, max_y = min(min_x, x), max(max_x, x), min(min_y, y), max(max_y, y)
         plt.scatter(xs, ys, s=50, color="blue")
         plt.plot(xs, ys, color="blue")
         
-        plt.title("Shortest path: " + start + " -> " + end)
+        # neighboring cities
+        xs, ys = [], []
+        neighbors = []
+        for city in path:
+            for neighbor_tuple in adjlist[city]:
+                neighbor = neighbor_tuple[0]
+                if neighbor not in path:
+                    x, y = coordinates[neighbor][0], coordinates[neighbor][1]
+                    xs.append(x)
+                    ys.append(y)
+                    plt.annotate(neighbor, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
+                    neighbors.append(neighbor)
+        # neighbors of neighbors and visualization
+        for neighbor in neighbors:
+            for neighbor_of_neighbor_tuple in adjlist[neighbor]:
+                neighbor_of_neighbor = neighbor_of_neighbor_tuple[0]
+                x, y = coordinates[neighbor_of_neighbor][0], coordinates[neighbor_of_neighbor][1]
+                if neighbor_of_neighbor not in path and neighbor_of_neighbor not in neighbors:
+                    xs.append(x)
+                    ys.append(y)
+                    plt.annotate(neighbor_of_neighbor, (x,y), textcoords="offset points", xytext=(0,5), ha="center")
+                x2, y2 = coordinates[neighbor][0], coordinates[neighbor][1]
+                plt.plot([x, x2], [y, y2], color="grey", linestyle="dashed")
+        plt.scatter(xs, ys, s=5, color="grey")
+
+        # duration
+        hours = int(distance // 1)
+        minutes = int(round(distance % 1 * 60, 0))
+        duration_string = str(hours) + " hours " + str(minutes) + " minutes"
+        
+        if ida_terminated:
+            plt.title("Shortest path: " + start + " -> " + end + "\n(" + duration_string + ")")
+        else: # ida did not finish
+            plt.title("Shortest path: " + start + " -> " + end + "\n(" + duration_string + ")")
         plt.show()
     
     
@@ -125,20 +138,20 @@ def ui(cities, coordinates, speedlimits, adjlist):
                 if end not in cities:
                     print("City not available")
             
-            algo = input("\nAlgorithm (d/i): ")
-            
             print("\nCalculating shortest path: " + start + "-" + end + "...")
             
             # get shortest path
-            if algo == "d":
-                distance, path = dijkstra(start, end, adjlist)
-            elif algo == "i":
-                distance, path = idastar(start, end, adjlist, coordinates)
-            else:
-                continue
+            distance_dij, path_dij, time_dij = dijkstra(start, end, adjlist)
+            distance_ida, path_ida, time_ida = idastar(start, end, adjlist, coordinates)
+            time_dij = round(time_dij*1000, 3) # time in milliseconds rounded to 3 decimals
             
-            print(shortest_path_output(start, end, distance, path))
-            visualize_path(start, end, distance, path)
+            if path_ida == "no_path":
+                print(shortest_path_output(start, end, distance_dij, path_dij, time_dij, time_ida, False))
+                visualize_path(start, end, distance_dij, path_dij, time_dij, time_ida, False)
+            else: # ida finished
+                time_ida = round(time_ida*1000, 3) # time in milliseconds rounded to 3 decimals
+                print(shortest_path_output(start, end, distance_dij, path_dij, time_dij, time_ida, True))
+                visualize_path(start, end, distance_dij, path_dij, time_dij, time_ida, True)
         
         elif command == "2": # Find shortest path between random cities
             # random start and end cities
@@ -147,20 +160,20 @@ def ui(cities, coordinates, speedlimits, adjlist):
             while start == end:
                 end = cities[randint(0, len(cities)-1)]
             
-            algo = input("\nAlgorithm (d/i): ")
-            
             print("\nCalculating shortest path: " + start + "-" + end + "...")
             
             # get shortest path
-            if algo == "d":
-                distance, path = dijkstra(start, end, adjlist)
-            elif algo == "i":
-                distance, path = idastar(start, end, adjlist, coordinates)
-            else:
-                continue
+            distance_dij, path_dij, time_dij = dijkstra(start, end, adjlist)
+            distance_ida, path_ida, time_ida = idastar(start, end, adjlist, coordinates)
+            time_dij = round(time_dij*1000, 3) # time in milliseconds rounded to 3 decimals
             
-            print(shortest_path_output(start, end, distance, path))
-            visualize_path(start, end, distance, path)
+            if path_ida == "no_path":
+                print(shortest_path_output(start, end, distance_dij, path_dij, time_dij, time_ida, False))
+                visualize_path(start, end, distance_dij, path_dij, time_dij, time_ida, False)
+            else: # ida finished
+                time_ida = round(time_ida*1000, 3) # time in milliseconds rounded to 3 decimals
+                print(shortest_path_output(start, end, distance_dij, path_dij, time_dij, time_ida, True))
+                visualize_path(start, end, distance_dij, path_dij, time_dij, time_ida, True)
         
         elif command == "3": # See list of cities
             print("\n- Cities -\n" + ", ".join(cities) + "\n")

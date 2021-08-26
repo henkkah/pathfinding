@@ -8,10 +8,13 @@ def idastar(start, end, adjlist, coordinates):
             startvertex -> [(endvertex1,weight1), (endvertex2,weight2), etc...]
     
     Returns:
-        tuple of (distance, path), where distance is the min distance between start and end cities and path is the min path forming this min distance
+        tuple of (distance, path, runtime), where distance is the min distance between start and end cities, path is the min path forming this min distance, and runtime is the time it took for algorithm to finish
     """
     
     from math import sqrt
+    from time import time
+    
+    start_time = time()
     
     # Helper function for idastar()
     def search(vertex, cost, via, threshold):
@@ -49,11 +52,16 @@ def idastar(start, end, adjlist, coordinates):
     threshold = heuristics[start]
     
     # loop until end vertex is reached
-    while True:
+    while time()-start_time < 3: # ida has 3 seconds to finish
         temp = search(start, 0, "", threshold)
         if temp[0]:
             path = temp[2][2:].split("//")
-            return (temp[1], path)
+            end_time = time()
+            runtime = end_time-start_time
+            return (temp[1], path, runtime)
         threshold = temp[1]
+    
+    # ida did not finish in 3 seconds
+    return ("no_distance", "no_path", "no_time")
 
 

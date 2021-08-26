@@ -8,10 +8,13 @@ def dijkstra(start, end, adjlist):
             startvertex -> [(endvertex1,weight1), (endvertex2,weight2), etc...]
     
     Returns:
-        tuple of (distance, path), where distance is the min distance between start and end cities and path is the min path forming this min distance
+        tuple of (distance, path, runtime), where distance is the min distance between start and end cities, path is the min path forming this min distance, and runtime is the time it took for algorithm to finish
     """
     
     from min_heap import MinHeap
+    from time import time
+    
+    start_time = time()
     
     inf = 10**9         # infinity
     
@@ -51,7 +54,10 @@ def dijkstra(start, end, adjlist):
         path.append(start)
     path.reverse()
     
+    end_time = time()
+    runtime = end_time-start_time
+    
     # return (distances, processed, heap, distance, path)   # return value for debugging purposes
-    return (distance, path)
+    return (distance, path, runtime)
 
 
