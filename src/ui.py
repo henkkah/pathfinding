@@ -13,10 +13,12 @@ def ui(cities, coordinates, speedlimits, adjlist):
         no return value - app closes when user decides to close it
     """
     
+    
     from dijkstra import dijkstra
     from idastar import idastar
     from random import randint
     import matplotlib.pyplot as plt
+    
     
     def get_commands():
         """Helper method - Gets available commands available for user in UI.
@@ -28,6 +30,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
             Available commands as string
         """
         return "Commands:\n    1 [Find shortest path between given cities]\n    2 [Find shortest path between random cities]\n    3 [See list of cities]\n    4 [Close application]\n"
+    
     
     def shortest_path_output(start, end, distance, path):
         """Helper method - Formats resulting shortest path.
@@ -46,6 +49,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
         citypath = " - ".join(path)
         return "\n----- Shortest path -----\nStart:    " + start + "\nEnd:      " + end + "\nDuration: " + str(hours) + " hours " + str(minutes) + " minutes\nPath:     " + citypath + "\n"
     
+    
     def visualize_path(start, end, distance, path):
         """Helper method - Visualizes found shortest path to a separate window.
         
@@ -56,7 +60,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
             path: shortest path between start and end cities (calculated in other methods)
         
         Returns:
-            no return value - returned from the method when user closes window
+            no return value - returned from the method when user closes window which has popped up
         """
         min_x, max_x, min_y, max_y = 100, 0, 100, 0
 
@@ -107,7 +111,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
         print(get_commands())
         command = input("Command: ")
         
-        if command == "1":
+        if command == "1": # Find shortest path between given cities
             # get start and end cities
             print()
             start = ""
@@ -136,7 +140,7 @@ def ui(cities, coordinates, speedlimits, adjlist):
             print(shortest_path_output(start, end, distance, path))
             visualize_path(start, end, distance, path)
         
-        elif command == "2":
+        elif command == "2": # Find shortest path between random cities
             # random start and end cities
             start = cities[randint(0, len(cities)-1)]
             end = cities[randint(0, len(cities)-1)]
@@ -158,10 +162,10 @@ def ui(cities, coordinates, speedlimits, adjlist):
             print(shortest_path_output(start, end, distance, path))
             visualize_path(start, end, distance, path)
         
-        elif command == "3":
+        elif command == "3": # See list of cities
             print("\n- Cities -\n" + ", ".join(cities) + "\n")
         
-        elif command == "4":
+        elif command == "4": # Close application
             exit()
         
         else:

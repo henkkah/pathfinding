@@ -5,7 +5,7 @@ def data_for_app():
         no arguments - reads data from csv files which need to be in data folder in order for the application to work
     
     Returns:
-        tuple of (cities, coordinates, speedlimits, adjlist) in this developing phase - later return value will be modified
+        tuple of (cities, coordinates, speedlimits, adjlist)
     """
     
     import csv
