@@ -41,8 +41,8 @@ Performance tests can also be repeated as often as desired - new random start an
 Here are a few shortest paths found by the application:  
   
 Helsinki-Tampere:  
-![shortest_path_helsinki_tampere](https://github.com/henkkah/pathfinding/tree/master/documentation/pictures/shortest_path_helsinki_tampere)  
+![shortest_path_helsinki_tampere](./pictures/shortest_path_helsinki_tampere.png)  
 Jyväskylä-Kajaani:  
-![shortest_path_jyvaskyla_kajaani](https://github.com/henkkah/pathfinding/tree/master/documentation/pictures/shortest_path_jyvaskyla_kajaani)  
+![shortest_path_jyvaskyla_kajaani](./pictures/shortest_path_jyvaskyla_kajaani.png)  
 Kuusamo-Kilpisjärvi:  
-![shortest_path_kuusamo_kilpisjarvi](https://github.com/henkkah/pathfinding/tree/master/documentation/pictures/shortest_path_kuusamo_kilpisjarvi)  
+![shortest_path_kuusamo_kilpisjarvi](./pictures/shortest_path_kuusamo_kilpisjarvi.png)  
