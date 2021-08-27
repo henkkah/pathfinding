@@ -12,15 +12,37 @@ Topic of this project is to make a pathfinding application. Two (shortest) pathf
 [Pylint ratings](https://github.com/henkkah/pathfinding/tree/master/documentation/pylint_ratings)  
 
 ## What and how was tested
-Currently (13.8.2021), working of Dijkstra's algorithm and self-coded Min Heap have been tested.  
-Testing was done by creating an example graph and an example heap, and by determining correct answers which code needs to return in order to work correctly.  
+
+### Application testing
+Working of Dijkstra's algorithm, IDA* algorithm, and self-coded heap data structure has been tested with unittesting.
+There are both example graphs and a real graph (Finnish map) used in the tests.
+In the example graphs Dijkstra's and IDA* algorithms have been tested to give correct shortest distances and paths (determined by the programmer).
+For IDA* a pixel graph was created in order to be able to give heuristics to the algorithm.
+Heap is tested with an example graph to contain correct min value during insertions and pop-ups.
+Finally, working of both algorithms is tested with real graph (Finnish map) by testing that the algorithms give correct shortest paths.
+Correct paths have been determined by the programmer manually, as the graph is real and there is no automatic way to determine correct solutions.
+
+### Performance testing
+Performance testing has been conducted to analyze performance of Dijkstra's algorithm vs. IDA* algorithm.
+Performance is tested with a module which randomly chooses desired number of start cities and end cities and calculates runtimes of both algorithms in finding shortest paths between those cities.
+Runtimes are saved to a list, and then for analysis purposes paths are categorized into short-range, mid-range, and long-range paths based on euclidean distance between start and end cities.
+Paths are categorized into three categories so that all categories contain same amount of paths (e.g. with 15 paths, there are 5 short-range, 5 mid-range, and 5 long-range paths).
+With this categorization, it is easy to make analysis on how algorithms behave in different kind of distances and paths.
 
 ## Inputs for testing
-Currently (13.8.2021), one example graph and one example heap have been created for testing working of Dijkstra's algorithm and self-coded Min Heap.  
+There are both example graphs (created by the programmer) and a real graph (Finnish map) given as input for testing.
 
 ## Repeating tests
-Tests have been written as a test class using Python's unittest library.  
-This means that tests can be re-run as many times as wanted.  
+Both Application testing and Performance testing can be repeated easily.
+Application tests (unittesting) can be done each time desired, and testing module gives automatic reports on the results.
+Performance tests can also be repeated as often as desired - new random start and end cities of course give each time different results, so repeating performance testing is recommended with different kinds of setups.
 
 ## Empirical test results in graphical format
-TBD
+Here are a few shortest paths found by the application:  
+  
+Helsinki-Tampere:  
+(https://github.com/henkkah/pathfinding/tree/master/documentation/pictures/shortest_path_helsinki_tampere)
+Jyväskylä-Kajaani:  
+(https://github.com/henkkah/pathfinding/tree/master/documentation/pictures/shortest_path_jyvaskyla_kajaani)
+Kuusamo-Kilpisjärvi:  
+(https://github.com/henkkah/pathfinding/tree/master/documentation/pictures/shortest_path_kuusamo_kilpisjarvi)
