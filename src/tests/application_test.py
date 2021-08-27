@@ -61,62 +61,62 @@ class TestPathFindingApp(unittest.TestCase):
     
     # Test Dijkstra's Algorithm 1 - Distances
     def test_dijkstra_algorithm_on_graph_1_distances(self):
-        distB, pathB = dijkstra('A', 'B', self.adjlist1)
-        distC, pathC = dijkstra('A', 'C', self.adjlist1)
-        distD, pathD = dijkstra('A', 'D', self.adjlist1)
-        distE, pathE = dijkstra('A', 'E', self.adjlist1)
-        distF, pathF = dijkstra('A', 'F', self.adjlist1)
+        distB, pathB, timeB = dijkstra('A', 'B', self.adjlist1)
+        distC, pathC, timeC = dijkstra('A', 'C', self.adjlist1)
+        distD, pathD, timeD = dijkstra('A', 'D', self.adjlist1)
+        distE, pathE, timeE = dijkstra('A', 'E', self.adjlist1)
+        distF, pathF, timeF = dijkstra('A', 'F', self.adjlist1)
         
         self.assertEqual( (distB,distC,distD,distE,distF) , (5,10,6,3,2) )
     
     # Test Dijkstra's Algorithm 1 - Paths
     def test_dijkstra_algorithm_on_graph_1_paths(self):
-        distB, pathB = dijkstra('A', 'B', self.adjlist1)
-        distC, pathC = dijkstra('A', 'C', self.adjlist1)
-        distD, pathD = dijkstra('A', 'D', self.adjlist1)
-        distE, pathE = dijkstra('A', 'E', self.adjlist1)
-        distF, pathF = dijkstra('A', 'F', self.adjlist1)
+        distB, pathB, timeB = dijkstra('A', 'B', self.adjlist1)
+        distC, pathC, timeC = dijkstra('A', 'C', self.adjlist1)
+        distD, pathD, timeD = dijkstra('A', 'D', self.adjlist1)
+        distE, pathE, timeE = dijkstra('A', 'E', self.adjlist1)
+        distF, pathF, timeF = dijkstra('A', 'F', self.adjlist1)
         
         self.assertEqual( (pathB,pathC,pathD,pathE,pathF) , (['A','F','E','B'],['A','F','E','D','C'],['A','F','E','D'],['A','F','E'],['A','F']) )
 
 
     # Test Dijkstra's Algorithm 2 - Distances
     def test_dijkstra_algorithm_on_graph_2_distances(self):
-        distB, pathB = dijkstra('A', 'B', self.adjlist2)
-        distC, pathC = dijkstra('A', 'C', self.adjlist2)
-        distD, pathD = dijkstra('A', 'D', self.adjlist2)
-        distE, pathE = dijkstra('A', 'E', self.adjlist2)
-        distF, pathF = dijkstra('A', 'F', self.adjlist2)
-        distG, pathG = dijkstra('A', 'G', self.adjlist2)
-        distH, pathH = dijkstra('A', 'H', self.adjlist2)
-        distI, pathI = dijkstra('A', 'I', self.adjlist2)
+        distB, pathB, timeB = dijkstra('A', 'B', self.adjlist2)
+        distC, pathC, timeC = dijkstra('A', 'C', self.adjlist2)
+        distD, pathD, timeD = dijkstra('A', 'D', self.adjlist2)
+        distE, pathE, timeE = dijkstra('A', 'E', self.adjlist2)
+        distF, pathF, timeF = dijkstra('A', 'F', self.adjlist2)
+        distG, pathG, timeG = dijkstra('A', 'G', self.adjlist2)
+        distH, pathH, timeH = dijkstra('A', 'H', self.adjlist2)
+        distI, pathI, timeI = dijkstra('A', 'I', self.adjlist2)
         
         self.assertEqual( (distB,distC,distD,distE,distF,distG,distH,distI) , (4,12,19,21,11,9,8,14) )
     
     # Test Dijkstra's Algorithm 2 - Paths
     def test_dijkstra_algorithm_on_graph_2_paths(self):
-        distB, pathB = dijkstra('A', 'B', self.adjlist2)
-        distC, pathC = dijkstra('A', 'C', self.adjlist2)
-        distD, pathD = dijkstra('A', 'D', self.adjlist2)
-        distE, pathE = dijkstra('A', 'E', self.adjlist2)
-        distF, pathF = dijkstra('A', 'F', self.adjlist2)
-        distG, pathG = dijkstra('A', 'G', self.adjlist2)
-        distH, pathH = dijkstra('A', 'H', self.adjlist2)
-        distI, pathI = dijkstra('A', 'I', self.adjlist2)
+        distB, pathB, timeB = dijkstra('A', 'B', self.adjlist2)
+        distC, pathC, timeC = dijkstra('A', 'C', self.adjlist2)
+        distD, pathD, timeD = dijkstra('A', 'D', self.adjlist2)
+        distE, pathE, timeE = dijkstra('A', 'E', self.adjlist2)
+        distF, pathF, timeF = dijkstra('A', 'F', self.adjlist2)
+        distG, pathG, timeG = dijkstra('A', 'G', self.adjlist2)
+        distH, pathH, timeH = dijkstra('A', 'H', self.adjlist2)
+        distI, pathI, timeI = dijkstra('A', 'I', self.adjlist2)
         
         self.assertEqual( (pathB,pathC,pathD,pathE,pathF,pathG,pathH,pathI) , (['A','B'],['A','B','C'],['A','B','C','D'],['A','H','G','F','E'],['A','H','G','F'],['A','H','G'],['A','H'],['A','B','C','I']) )    
     
     
     # Test IDA* Algorithm 3 - Distances
     def test_idastar_algorithm_on_graph_3_distances(self):
-        distB, pathB = idastar('A', 'B', self.adjlist3, self.coordinates3)
-        distC, pathC = idastar('A', 'C', self.adjlist3, self.coordinates3)
-        distD, pathD = idastar('A', 'D', self.adjlist3, self.coordinates3)
-        distE, pathE = idastar('A', 'E', self.adjlist3, self.coordinates3)
-        distF, pathF = idastar('A', 'F', self.adjlist3, self.coordinates3)
-        distG, pathG = idastar('A', 'G', self.adjlist3, self.coordinates3)
-        distH, pathH = idastar('A', 'H', self.adjlist3, self.coordinates3)
-        distI, pathI = idastar('A', 'I', self.adjlist3, self.coordinates3)
+        distB, pathB, timeB = idastar('A', 'B', self.adjlist3, self.coordinates3)
+        distC, pathC, timeC = idastar('A', 'C', self.adjlist3, self.coordinates3)
+        distD, pathD, timeD = idastar('A', 'D', self.adjlist3, self.coordinates3)
+        distE, pathE, timeE = idastar('A', 'E', self.adjlist3, self.coordinates3)
+        distF, pathF, timeF = idastar('A', 'F', self.adjlist3, self.coordinates3)
+        distG, pathG, timeG = idastar('A', 'G', self.adjlist3, self.coordinates3)
+        distH, pathH, timeH = idastar('A', 'H', self.adjlist3, self.coordinates3)
+        distI, pathI, timeI = idastar('A', 'I', self.adjlist3, self.coordinates3)
         resB = round(sqrt(2)+5,1)
         resC = round(sqrt(2)+sqrt(26),1)
         resD = round(sqrt(2)+sqrt(13),1)
@@ -130,14 +130,14 @@ class TestPathFindingApp(unittest.TestCase):
     
     # Test IDA* Algorithm 3 - Paths
     def test_idastar_algorithm_on_graph_3_paths(self):
-        distB, pathB = idastar('A', 'B', self.adjlist3, self.coordinates3)
-        distC, pathC = idastar('A', 'C', self.adjlist3, self.coordinates3)
-        distD, pathD = idastar('A', 'D', self.adjlist3, self.coordinates3)
-        distE, pathE = idastar('A', 'E', self.adjlist3, self.coordinates3)
-        distF, pathF = idastar('A', 'F', self.adjlist3, self.coordinates3)
-        distG, pathG = idastar('A', 'G', self.adjlist3, self.coordinates3)
-        distH, pathH = idastar('A', 'H', self.adjlist3, self.coordinates3)
-        distI, pathI = idastar('A', 'I', self.adjlist3, self.coordinates3)
+        distB, pathB, timeB = idastar('A', 'B', self.adjlist3, self.coordinates3)
+        distC, pathC, timeC = idastar('A', 'C', self.adjlist3, self.coordinates3)
+        distD, pathD, timeD = idastar('A', 'D', self.adjlist3, self.coordinates3)
+        distE, pathE, timeE = idastar('A', 'E', self.adjlist3, self.coordinates3)
+        distF, pathF, timeF = idastar('A', 'F', self.adjlist3, self.coordinates3)
+        distG, pathG, timeG = idastar('A', 'G', self.adjlist3, self.coordinates3)
+        distH, pathH, timeH = idastar('A', 'H', self.adjlist3, self.coordinates3)
+        distI, pathI, timeI = idastar('A', 'I', self.adjlist3, self.coordinates3)
         
         self.assertEqual( (pathB,pathC,pathD,pathE,pathF,pathG,pathH,pathI) , (['A','F','B'],['A','F','C'],['A','F','D'],['A','F','D','E'],['A','F'],['A','F','D','G'],['A','F','H'],['A','F','H','I']) )
     
@@ -207,6 +207,133 @@ class TestPathFindingApp(unittest.TestCase):
         pop0 = self.heap1.pop_min()     # None
         
         self.assertEqual( (pop10,pop9,pop8,pop7,pop6,pop5,pop4,pop3,pop2,pop1,pop0) , (2,3,7,7,8,8,9,12,13,15,None) )
+    
+    
+    # Test Paths on Dijkstra from Helsinki
+    def test_paths_on_dijkstra_on_real_graph_from_helsinki(self):
+        d, path_tampere, t = dijkstra('Helsinki', 'Tampere', self.adjlist)
+        d, path_rauma, t = dijkstra('Helsinki', 'Rauma', self.adjlist)
+        d, path_lappeenranta, t = dijkstra('Helsinki', 'Lappeenranta', self.adjlist)
+        d, path_savonlinna, t = dijkstra('Helsinki', 'Savonlinna', self.adjlist)
+        d, path_joensuu, t = dijkstra('Helsinki', 'Joensuu', self.adjlist)
+        d, path_seinajoki, t = dijkstra('Helsinki', 'Seinajoki', self.adjlist)
+        d, path_kajaani, t = dijkstra('Helsinki', 'Kajaani', self.adjlist)
+        d, path_oulu, t = dijkstra('Helsinki', 'Oulu', self.adjlist)
+        d, path_kilpisjarvi, t = dijkstra('Helsinki', 'Kilpisjarvi', self.adjlist)
+        d, path_utsjoki, t = dijkstra('Helsinki', 'Utsjoki', self.adjlist)
+        
+        path_tampere_correct = ['Helsinki', 'Hyvinkaa', 'Hameenlinna', 'Toijala', 'Tampere']
+        path_rauma_correct = ['Helsinki', 'Espoo', 'Palojarvi', 'Lohja', 'Salo', 'Turku', 'Rauma']
+        path_lappeenranta_correct = ['Helsinki', 'Porvoo', 'Koskenkyla', 'Kouvola', 'Taavetti', 'Lappeenranta']
+        path_savonlinna_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Mikkeli', 'Juva', 'Savonlinna']
+        path_joensuu_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Mikkeli', 'Juva', 'Varkaus', 'Joensuu']
+        path_seinajoki_correct = ['Helsinki', 'Hyvinkaa', 'Hameenlinna', 'Toijala', 'Tampere', 'Parkano', 'Jalasjarvi', 'Seinajoki']
+        path_kajaani_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Mikkeli', 'Juva', 'Varkaus', 'Kuopio', 'Iisalmi', 'Kajaani']
+        path_oulu_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu']
+        path_kilpisjarvi_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kemi', 'Keminmaa', 'Tornio', 'Pello', 'Kolari', 'Muonio', 'Kilpisjarvi']
+        path_utsjoki_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kemi', 'Keminmaa', 'Rovaniemi', 'Sodankyla', 'Ivalo', 'Utsjoki']
+        
+        self.assertEqual( (path_tampere, path_rauma, path_lappeenranta, path_savonlinna, path_joensuu, path_seinajoki, path_kajaani, path_oulu, path_kilpisjarvi, path_utsjoki) , 
+                        (path_tampere_correct, path_rauma_correct, path_lappeenranta_correct, path_savonlinna_correct, path_joensuu_correct, 
+                        path_seinajoki_correct, path_kajaani_correct, path_oulu_correct, path_kilpisjarvi_correct, path_utsjoki_correct) )
+        
+    # Test Paths on IDA* from Helsinki
+    def test_paths_on_idastar_on_real_graph_from_helsinki(self):
+        d, path_tampere, t = idastar('Helsinki', 'Tampere', self.adjlist, self.coordinates)
+        d, path_rauma, t = idastar('Helsinki', 'Rauma', self.adjlist, self.coordinates)
+        d, path_lappeenranta, t = idastar('Helsinki', 'Lappeenranta', self.adjlist, self.coordinates)
+        d, path_savonlinna, t = idastar('Helsinki', 'Savonlinna', self.adjlist, self.coordinates)
+        d, path_joensuu, t = idastar('Helsinki', 'Joensuu', self.adjlist, self.coordinates)
+        d, path_seinajoki, t = idastar('Helsinki', 'Seinajoki', self.adjlist, self.coordinates)
+        d, path_kajaani, t = idastar('Helsinki', 'Kajaani', self.adjlist, self.coordinates)
+        d, path_oulu, t = idastar('Helsinki', 'Oulu', self.adjlist, self.coordinates)
+        d, path_kilpisjarvi, t = idastar('Helsinki', 'Kilpisjarvi', self.adjlist, self.coordinates)
+        d, path_utsjoki, t = idastar('Helsinki', 'Utsjoki', self.adjlist, self.coordinates)
+        
+        path_tampere_correct = ['Helsinki', 'Hyvinkaa', 'Hameenlinna', 'Toijala', 'Tampere']
+        path_rauma_correct = ['Helsinki', 'Espoo', 'Palojarvi', 'Lohja', 'Salo', 'Turku', 'Rauma']
+        path_lappeenranta_correct = ['Helsinki', 'Porvoo', 'Koskenkyla', 'Kouvola', 'Taavetti', 'Lappeenranta']
+        path_savonlinna_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Mikkeli', 'Juva', 'Savonlinna']
+        path_joensuu_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Mikkeli', 'Juva', 'Varkaus', 'Joensuu']
+        path_seinajoki_correct = ['Helsinki', 'Hyvinkaa', 'Hameenlinna', 'Toijala', 'Tampere', 'Parkano', 'Jalasjarvi', 'Seinajoki']
+        path_kajaani_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Mikkeli', 'Juva', 'Varkaus', 'Kuopio', 'Iisalmi', 'Kajaani']
+        path_oulu_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu']
+        path_kilpisjarvi_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kemi', 'Keminmaa', 'Tornio', 'Pello', 'Kolari', 'Muonio', 'Kilpisjarvi']
+        path_utsjoki_correct = ['Helsinki', 'Mantsala', 'Lahti', 'Heinola', 'Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kemi', 'Keminmaa', 'Rovaniemi', 'Sodankyla', 'Ivalo', 'Utsjoki']
+        
+        self.assertEqual( (path_tampere, path_rauma, path_lappeenranta, path_savonlinna, path_joensuu, path_seinajoki, path_kajaani, path_oulu, path_kilpisjarvi, path_utsjoki) , 
+                        (path_tampere_correct, path_rauma_correct, path_lappeenranta_correct, path_savonlinna_correct, path_joensuu_correct, 
+                        path_seinajoki_correct, path_kajaani_correct, path_oulu_correct, path_kilpisjarvi_correct, path_utsjoki_correct) )
+    
+    
+    # Test Paths on Dijkstra from Jyvaskyla
+    def test_paths_on_dijkstra_on_real_graph_from_jyvaskyla(self):
+        d, path_turku, t = dijkstra('Jyvaskyla', 'Turku', self.adjlist)
+        d, path_kouvola, t = dijkstra('Jyvaskyla', 'Kouvola', self.adjlist)
+        d, path_vaasa, t = dijkstra('Jyvaskyla', 'Vaasa', self.adjlist)
+        d, path_kuusamo, t = dijkstra('Jyvaskyla', 'Kuusamo', self.adjlist)
+        d, path_kilpisjarvi, t = dijkstra('Jyvaskyla', 'Kilpisjarvi', self.adjlist)
+        
+        path_turku_correct = ['Jyvaskyla', 'Jamsa', 'Tampere', 'Toijala', 'Humppila', 'Turku']
+        path_kouvola_correct = ['Jyvaskyla', 'Heinola', 'Lahti', 'Kouvola']
+        path_vaasa_correct = ['Jyvaskyla', 'Petajavesi', 'Ahtari', 'Seinajoki', 'Ylistaro', 'Laihia', 'Vaasa']
+        path_kuusamo_correct = ['Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kiiminki', 'Pudasjarvi', 'Taivalkoski', 'Kuusamo']
+        path_kilpisjarvi_correct = ['Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kemi', 'Keminmaa', 'Tornio', 'Pello', 'Kolari', 'Muonio', 'Kilpisjarvi']
+    
+        self.assertEqual( (path_turku, path_kouvola, path_vaasa, path_kuusamo, path_kilpisjarvi) , 
+                        (path_turku_correct, path_kouvola_correct, path_vaasa_correct, path_kuusamo_correct, path_kilpisjarvi_correct) )
+    
+    # Test Paths on IDA* from Jyvaskyla
+    def test_paths_on_idastar_on_real_graph_from_jyvaskyla(self):
+        d, path_turku, t = idastar('Jyvaskyla', 'Turku', self.adjlist, self.coordinates)
+        d, path_kouvola, t = idastar('Jyvaskyla', 'Kouvola', self.adjlist, self.coordinates)
+        d, path_vaasa, t = idastar('Jyvaskyla', 'Vaasa', self.adjlist, self.coordinates)
+        d, path_kuusamo, t = idastar('Jyvaskyla', 'Kuusamo', self.adjlist, self.coordinates)
+        d, path_kilpisjarvi, t = idastar('Jyvaskyla', 'Kilpisjarvi', self.adjlist, self.coordinates)
+        
+        path_turku_correct = ['Jyvaskyla', 'Jamsa', 'Tampere', 'Toijala', 'Humppila', 'Turku']
+        path_kouvola_correct = ['Jyvaskyla', 'Heinola', 'Lahti', 'Kouvola']
+        path_vaasa_correct = ['Jyvaskyla', 'Petajavesi', 'Ahtari', 'Seinajoki', 'Ylistaro', 'Laihia', 'Vaasa']
+        path_kuusamo_correct = ['Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kiiminki', 'Pudasjarvi', 'Taivalkoski', 'Kuusamo']
+        path_kilpisjarvi_correct = ['Jyvaskyla', 'Aanekoski', 'Pyhajarvi', 'Karsamaki', 'Liminka', 'Oulu', 'Kemi', 'Keminmaa', 'Tornio', 'Pello', 'Kolari', 'Muonio', 'Kilpisjarvi']
+    
+        self.assertEqual( (path_turku, path_kouvola, path_vaasa, path_kuusamo, path_kilpisjarvi) , 
+                        (path_turku_correct, path_kouvola_correct, path_vaasa_correct, path_kuusamo_correct, path_kilpisjarvi_correct) )
+    
+    
+    # Test Paths on Dijkstra from Oulu
+    def test_paths_on_dijkstra_on_real_graph_from_oulu(self):
+        d, path_porvoo, t = dijkstra('Oulu', 'Porvoo', self.adjlist)
+        d, path_pori, t = dijkstra('Oulu', 'Pori', self.adjlist)
+        d, path_hameenlinna, t = dijkstra('Oulu', 'Hameenlinna', self.adjlist)
+        d, path_kuopio, t = dijkstra('Oulu', 'Kuopio', self.adjlist)
+        d, path_kilpisjarvi, t = dijkstra('Oulu', 'Kilpisjarvi', self.adjlist)
+        
+        path_porvoo_correct = ['Oulu', 'Liminka', 'Karsamaki', 'Pyhajarvi', 'Aanekoski', 'Jyvaskyla', 'Heinola', 'Lahti', 'Mantsala', 'Helsinki', 'Porvoo']
+        path_pori_correct = ['Oulu', 'Liminka', 'Kalajoki', 'Kalvia', 'Kokkola', 'Uusikaarlepyy', 'Vaasa', 'Pori']
+        path_hameenlinna_correct = ['Oulu', 'Liminka', 'Karsamaki', 'Pyhajarvi', 'Aanekoski', 'Jyvaskyla', 'Jamsa', 'Tampere', 'Toijala', 'Hameenlinna']
+        path_kuopio_correct = ['Oulu', 'Liminka', 'Karsamaki', 'Pyhajarvi', 'Iisalmi', 'Kuopio']
+        path_kilpisjarvi_correct = ['Oulu', 'Kemi', 'Keminmaa', 'Tornio', 'Pello', 'Kolari', 'Muonio', 'Kilpisjarvi']
+        
+        self.assertEqual( (path_porvoo, path_pori, path_hameenlinna, path_kuopio, path_kilpisjarvi) , 
+                        (path_porvoo_correct, path_pori_correct, path_hameenlinna_correct, path_kuopio_correct, path_kilpisjarvi_correct) )
+    
+    # Test Paths on IDA* from Oulu
+    def test_paths_on_idastar_on_real_graph_from_oulu(self):
+        d, path_porvoo, t = idastar('Oulu', 'Porvoo', self.adjlist, self.coordinates)
+        d, path_pori, t = idastar('Oulu', 'Pori', self.adjlist, self.coordinates)
+        d, path_hameenlinna, t = idastar('Oulu', 'Hameenlinna', self.adjlist, self.coordinates)
+        d, path_kuopio, t = idastar('Oulu', 'Kuopio', self.adjlist, self.coordinates)
+        d, path_kilpisjarvi, t = idastar('Oulu', 'Kilpisjarvi', self.adjlist, self.coordinates)
+        
+        path_porvoo_correct = ['Oulu', 'Liminka', 'Karsamaki', 'Pyhajarvi', 'Aanekoski', 'Jyvaskyla', 'Heinola', 'Lahti', 'Mantsala', 'Helsinki', 'Porvoo']
+        path_pori_correct = ['Oulu', 'Liminka', 'Kalajoki', 'Kalvia', 'Kokkola', 'Uusikaarlepyy', 'Vaasa', 'Pori']
+        path_hameenlinna_correct = ['Oulu', 'Liminka', 'Karsamaki', 'Pyhajarvi', 'Aanekoski', 'Jyvaskyla', 'Jamsa', 'Tampere', 'Toijala', 'Hameenlinna']
+        path_kuopio_correct = ['Oulu', 'Liminka', 'Karsamaki', 'Pyhajarvi', 'Iisalmi', 'Kuopio']
+        path_kilpisjarvi_correct = ['Oulu', 'Kemi', 'Keminmaa', 'Tornio', 'Pello', 'Kolari', 'Muonio', 'Kilpisjarvi']
+        
+        self.assertEqual( (path_porvoo, path_pori, path_hameenlinna, path_kuopio, path_kilpisjarvi) , 
+                        (path_porvoo_correct, path_pori_correct, path_hameenlinna_correct, path_kuopio_correct, path_kilpisjarvi_correct) )
     
     
     
