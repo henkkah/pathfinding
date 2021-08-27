@@ -24,7 +24,7 @@ Application consists of several modules described below.
     - implementation of Min Heap (used in Dijkstra's algorithm)
 - *application_test.py* module
     - for automatic testing of the application
-- *performance_test.py* module
+- *performance_testing.py* module
     - for performance testing between algorithms
 
 ## Achieved time and space complexities
@@ -101,10 +101,31 @@ It starts to search for the solution from the start vertex at each iteration, on
 IDA* stores information only of current iteration, so amount of space depends on depth of the iteration, thus space complexity of O(d).  
 
 ## Performance comparison and O-analysis comparison
-TBD
+In empirical tests it has been noticed that IDA* is quite seldom faster than Dijkstra.
+Main problem noticed with IDA* is that it does not finish in reasonable time (now specified as 3 seconds) in long-range pathfinding problems (e.g. Helsinki->Oulu), while Dijkstra finds solution to these problems quickly.
+Both algorithms can solve short- and mid-range problems in reasonable time. Still, Dijkstra's algorithm is usually (much) faster in mid-range problems. Only short-range problems both algorithms can solve very quickly.
+  
+Analyzing difference between algorithms from O-analysis perspective is not easy as parameters in their time complexities are different.
+While time complexity of Dijkstra depends on number of edges and number of vertices, time complexity of IDA* depends on branching factor and depth of first solution.
+Amounts of edges and vertices can be easily seen from the graph before solving the problem.
+However, it takes a lot of effort to deduce branching factor from the graph, and depth of first solution depends on the initial threshold which is set in the particular implementation of IDA* by the programmer.
+Empirical results suggest that time complexity of Dijkstra is much better than IDA* in long- (and mid-) range problems, while in short-range problems both algorithms finish very quickly.
+Dijkstra being faster is natural, as on the other hand Dijkstra consumes more memory in saving intermediate results during search.
+IDA* does not store anything (except threshold) between iterations, and starts each iteration "from zero" to search for optimal path. This of course saves (a lot of) memory during search.
+Thus, one can see that there is a tradeoff between using less time and more memory (Dijkstra) and more time and less memory (IDA*).
+Which algorithm is better for which situation depends on the amount of memory available and how quickly algorithm needs to finish.
+Usually, there is enough of memory available for Dijkstra, so in most practical use cases Dijkstra would be the choice because of fast runtime.
+Also, it is possible to tune Dijkstra for even faster completion by switching to A* Algorithm (pretty similar to Dijkstra but heutistics values guide search more quickly to shortest path to end node).
+  
+It should be noted that current IDA* implementation is "standard" implementation, i.e. there is no effort in trying to make it faster. Current implmentation is very memory efficient, and it should be used in memory-constrained situations only.
+It would be possible to tune IDA* for working faster, but this would require saving intermediate results to memory, which would in turn increase its memory consumption.
 
 ## Possible shortages in app and improvement ideas
-TBD
+- Making GUI instead of command line UI
+- Improve visualization (e.g. real distances in the picture)
+- Tuning IDA* to finish faster
+- Switch from Dijkstra to A*
+- Get more base data for app to make graph more complete
 
 ## Sources
 ### Sources for algorithms, data structures and application implementation:
