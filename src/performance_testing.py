@@ -50,6 +50,8 @@ def performance_test(n):
         return header + result_dij + result_ida
     
     
+    print("\nCalculating...\n")
+    
     test_results = []
     
     for _ in range(n):
@@ -84,6 +86,14 @@ def performance_test(n):
     print(analyze_result(test_results, long_index, len(test_results), "Long"))
 
 
-performance_test(15)
+while True:
+    n = input("\nHow many pathfinding problems you want to test? (quit with 'q') ")
+    if n == "q":
+        break
+    try:
+        n = int(n)
+    except:
+        print("Give amount of pathfinding problems to be tested as integer.")
+    performance_test(n)
 
 
