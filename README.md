@@ -16,9 +16,10 @@ Programming language of the project is Python.
 This project is part of University of Helsinki's course 'Aineopintojen harjoitustyö: Tietorakenteet ja algoritmit' in August 2021.
 
 ## Usage Instruction
-Application is started by running *src/pathfinding.py* in the root folder of the project.  
-*matplotlib* library needs to be installed in order to run the app.  
+Application is started by running "*src/pathfinding.py*" in the root folder of the project.  
+*Python3* and *matplotlib* library need to be installed in order to run the app.  
 Application is used from command line.  
+More detailed [usage instruction](https://github.com/henkkah/pathfinding/blob/master/documentation/usage_instruction.md).  
 
 ## Weekly Reports
 [Weekly Report 1](https://github.com/henkkah/pathfinding/blob/master/documentation/weekly_reports/weekly_report_1.md)  
