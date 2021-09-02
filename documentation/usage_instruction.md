@@ -32,3 +32,6 @@ One can test that algorithms and data structures work as they should as follows.
   
 Pylint code quality testing:
 - See *pylint* report: "*pylint src*"
+
+## GitHub Release
+GitHub Release is located [here](https://github.com/henkkah/pathfinding/releases/tag/release1).  
