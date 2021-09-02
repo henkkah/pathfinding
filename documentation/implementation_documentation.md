@@ -26,6 +26,8 @@ Application consists of several modules described below.
     - for automatic testing of the application
 - *performance_testing.py* module
     - for performance testing between algorithms
+- *correctness_testing.py* module
+    - for correctness testing between algorithms
 
 ## Achieved time and space complexities
 In this particular pathdfinding application Finnish map forms a graph where cities are vertices (V below) and highways are edges (E below).

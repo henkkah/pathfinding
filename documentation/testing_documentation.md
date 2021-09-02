@@ -29,6 +29,9 @@ Runtimes are saved to a list, and then for analysis purposes paths are categoriz
 Paths are categorized into three categories so that all categories contain same amount of paths (e.g. with 15 paths, there are 5 short-range, 5 mid-range, and 5 long-range paths).
 With this categorization, it is easy to make analysis on how algorithms behave in different kind of distances and paths.
 
+### Correctness testing
+One can run *correctness_testing.py* module to verify that the two algorithms produce same shortest paths.
+
 ## Inputs for testing
 There are both example graphs (created by the programmer) and a real graph (Finnish map) given as input for testing.
 

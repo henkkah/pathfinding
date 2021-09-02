@@ -16,8 +16,13 @@ Pop-up window needs to be closed before making a new query.
 
 ## Performance Testing
 One can do performance testing for the application by running "*src/performance_testing.py*" in the root folder of the project.  
-Application randomly chooses 15 paths and categorizes them into short-, mid-, and long-range paths.  
+User can specify amount of paths to be tested and categorizes those into short-, mid-, and long-range paths.  
 Application gives summary statistics of performance between the algorithms on these paths as the result.  
+
+## Correctness Testing
+One can do correctness testing between the algorithms by running "*src/correctness_testing.py*" in the root folder of the project.  
+User can specify amount of paths to be tested.  
+Application summarizes the results of the correctness tests.  
 
 ## Unit Testing
 One can test that algorithms and data structures work as they should as follows.
@@ -34,4 +39,4 @@ Pylint code quality testing:
 - See *pylint* report: "*pylint src*"
 
 ## GitHub Release
-GitHub Release is located [here](https://github.com/henkkah/pathfinding/releases/tag/release1).  
+GitHub Release is located [here](https://github.com/henkkah/pathfinding/releases/tag/release2).  

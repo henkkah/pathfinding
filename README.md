@@ -22,7 +22,7 @@ Application is used from command line.
 More detailed [usage instruction](https://github.com/henkkah/pathfinding/blob/master/documentation/usage_instruction.md).  
 
 ## GitHub Release
-GitHub Release is located [here](https://github.com/henkkah/pathfinding/releases/tag/release1).  
+GitHub Release is located [here](https://github.com/henkkah/pathfinding/releases/tag/release2).  
 
 ## Weekly Reports
 [Weekly Report 1](https://github.com/henkkah/pathfinding/blob/master/documentation/weekly_reports/weekly_report_1.md)  
