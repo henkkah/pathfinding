@@ -29,7 +29,10 @@ def idastar(start, end, adjlist, coordinates):
         for neighbor_tuple in adjlist[vertex]:
             neighbor = neighbor_tuple[0]
             weight = neighbor_tuple[1]
-            temp = search(neighbor, cost+weight, via + "//" + vertex, threshold)
+            if neighbor not in via:
+                temp = search(neighbor, cost+weight, via + "//" + vertex, threshold)
+            else:
+                continue
             if temp[0]:
                 return temp
             if temp[1] < min_f:
